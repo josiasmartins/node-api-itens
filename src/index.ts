@@ -1,4 +1,5 @@
 import express from 'express'
+import itensRouter from './routers/itens-route'
 import cors from 'cors'
 // Porta do servidor
 const PORT = process.env.PORT || 4000
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
 app.use(cors({
     origin: ['http://localhost:3000']
 }))
+// Rotas
+app.use('/api', itensRouter)
 // Resposta padrão para quaisquer outras requisições:
 app.use((req, res) => {
     res.status(404)
@@ -22,3 +25,4 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
 })
+
