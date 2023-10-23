@@ -1,12 +1,18 @@
 import express from 'express'
-import itensRouter from './routers/itens-route'
 import cors from 'cors'
+import itensRouter from './routers/itens-route'
+
 // Porta do servidor
 const PORT = process.env.PORT || 4000
 // Host do servidor
 const HOSTNAME = process.env.HOSTNAME || 'http://localhost'
+
 // App Express
 const app = express()
+
+// JSON
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 // Endpoint raiz
 app.get('/', (req, res) => {
     res.send('Bem-vindo!')
@@ -25,4 +31,3 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor rodando com sucesso ${HOSTNAME}:${PORT}`)
 })
-
